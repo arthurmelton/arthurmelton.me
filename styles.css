@@ -1,78 +1,69 @@
-body {
-    display: block;
-    overflow-x: hidden;
+.container {
+    max-width: 960px;
 }
-nav {
-    background-color: white;
+
+/*
+ * Custom translucent site header
+ */
+
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
 }
-.navbar-brand img {
-    max-height: 50px;
+.site-header a {
+    color: #8e8e8e;
+    transition: color .15s ease-in-out;
 }
-.navbar-brand {
-    font-size: 24px;
-    text-transform: uppercase;
-    font-weight: 900;
-    color: #683aa4;
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
 }
-nav ul li a {
-    color: #a9a9a9;
-    font-size: 22px;
-    margin: auto 10px;
+
+/*
+ * Dummy devices (replace them with your own or something else entirely!)
+ */
+
+.product-device {
+    position: absolute;
+    right: 10%;
+    bottom: -30%;
+    width: 300px;
+    height: 540px;
+    background-color: #333;
+    border-radius: 21px;
+    transform: rotate(30deg);
 }
-nav ul li a:hover {
-    color: #683aa4;
+
+.product-device::before {
+    position: absolute;
+    top: 10%;
+    right: 10px;
+    bottom: 10%;
+    left: 10px;
+    content: "";
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
 }
-section {
-    padding-top: 50px;
-    padding-bottom: 50px;
+
+.product-device-2 {
+    top: -25%;
+    right: auto;
+    bottom: 0;
+    left: 5%;
+    background-color: #e5e5e5;
 }
-section h1 {
-    text-transform: uppercase;
-    font-weight: 900;
-    color: #683aa4;
-    text-align: left;
-    margin-bottom: 20px;
+
+
+/*
+ * Extra utilities
+ */
+
+.flex-equal > * {
+    flex: 1;
 }
-section p {
-    font-size: 16px;
-    font-weight: 300;
-}
-button {
-    max-width: 50%;
-    border-radius: 50px !important;
-}
-#hero .col {
-    justify-content: center;
-    flex-direction: column;
-    display: flex;
-}
-#hero .img-col {
-    justify-content: flex-end;
-    margin-top: 100px;
-}
-#hero img {
-    max-width: 130% !important;
-    width: 130%;
-}
-#hero .card {
-    box-shadow: 11px 7px 16px #f9f9f9;
-    border: 0;
-    text-align: center;
-}
-#hero .icon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 20px;
-}
-#projects .projects {
-    margin-bottom: 50px;
-}
-#contact {
-    text-align: center;
-    background-color: #683aa4;
-    color: white;
-}
-#contact h1 {
-    text-align: center;
-    color: white;
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        flex: 1;
+    }
 }
