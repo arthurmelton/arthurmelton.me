@@ -1,50 +1,31 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A kid from 2006 that just likes coding!">
-    <meta name="author" content="Arthur Melton">
-    <meta name="keywords" content="Git,GitHub,Arthur,Melton,ArthurMelton,Repo,Repository,">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="I am a kid from 2006 who loves coding" name="description">
+    <meta content="Arthur Melton" name="author">
+    <meta content="Git,GitHub,AMTitan,Arthur,Melton" name="keywords">
 
     <title>Arthur Melton</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet"><!-- JavaScript and dependencies -->
 
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles.css">
-    <!-- JavaScript and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-
-
-
-
-
-
-    <!-- Favicons -->
-
-    <link rel="icon" href="favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="manifest.json">
-
-    <link rel="icon" href="favicon.ico">
-    <meta name="theme-color" content="#f8f9fa">
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </script><!-- Favicons -->
+    <link href="favicon-32x32.ico" rel="icon" sizes="32x32" type="image/png">
+    <link href="favicon-16x16.ico" rel="icon" sizes="16x16" type="image/png">
+    <link href="favicon-48x48.ico" rel="icon" sizes="48x48" type="image/png">
+    <link href="favicon-64x64.ico" rel="icon" sizes="64x64" type="image/png">
+    <link href="avicon.ico" rel="icon">
+    <meta content="#f8f9fa" name="theme-color">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="shortcut icon" type="image/jpg" href="favicon.ico"/>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -52,6 +33,91 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WC94XGV');</script>
     <!-- End Google Tag Manager -->
+
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const options = {
+            label: "🌓",
+        }
+
+        function addDarkmodeWidget() {
+            const darkmode = new Darkmode(options);
+            //darkmode.toggle();
+            darkmode.showWidget();
+        }
+
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
+    <script>
+        var lastSelected = "Mine";
+        function load(string) {
+            var url = "";
+            if (string === "Mine") {
+                url = "https://api.github.com/users/AMTitan/repos?type=public&per_page=100";
+            }
+            else {
+                url = "https://api.github.com/orgs/Nyson-Programing-Language/repos?type=public&per_page=100";
+            }
+            $.getJSON(url, function(data) {
+                const types = ["Mine", "Nyson"];
+                types.forEach(item => {
+                    document.getElementById(item).style.color = "#212529";
+                });
+                lastSelected = string;
+                document.getElementById(string).style.color = "green";
+                document.getElementById("form1").value = "";
+                document.getElementById("loadone").outerHTML = "<div id=\"loadone\"  class=\"mx-auto row p-3 p-md-5 m-md-3 \">\n<div id=\"load\"></div>\n</div>";
+                $.each(data, function(i, f) {
+                    if (f.fork === false) {
+                        var text = "";
+                        try {
+                            document.getElementById("load").outerHTML = `<div class="bg-white shadow-sm mx-auto" style="border-radius: 10px; width: 300px; margin-right: 25px; margin-left: 25px; margin-bottom: 50px"><h1 class="display-8 fw-normal text-center" style="margin: 30px;">${f.name}</h1><br><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px">Stars: ${f.stargazers_count}</h1><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px">Watchers: ${f.watchers_count}</h1><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px">Forks: ${f.forks_count}</h1><br><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px; margin-bottom: 30px">Language: ${f.language || 'None'}</h1><div style="height: 1px"></div></div>` + document.getElementById("load").outerHTML;
+                        }
+                        catch (e) {
+                            console.error(e);
+                        }
+                    }
+                })
+            });
+        }
+        function onKey() {
+            if (document.getElementById("form1").value === "") {
+                load(lastSelected);
+            }
+            else {
+                var x = document.getElementById("form1").value.toLowerCase();
+                $.getJSON('https://api.github.com/users/AMTitan/repos?type=public&per_page=100', function(data) {
+                    $.getJSON('https://api.github.com/orgs/Nyson-Programing-Language/repos?type=public&per_page=100', function(data_nyson) {
+                        data = data.concat(data_nyson);
+                        const types = ["Mine", "Nyson"];
+                        types.forEach(item => {
+                            document.getElementById(item).style.color = "#212529";
+                        });
+                        document.getElementById("loadone").outerHTML = "<div id=\"loadone\"  class=\"mx-auto row p-3 p-md-5 m-md-3 \">\n<div id=\"load\"></div>\n</div>";
+                        $.each(data, function(i, f) {
+                            var allowed = false;
+                            if (f.name.toLowerCase().includes(x)) allowed = true;
+                            if (f.language && f.language.toLowerCase().includes(x)) allowed = true;
+                            if (allowed) {
+                                if (f.fork === false) {
+                                    var text = "";
+                                    try {
+                                        document.getElementById("load").outerHTML = `<div class="bg-white shadow-sm mx-auto" style="border-radius: 10px; width: 300px; margin-right: 25px; margin-left: 25px; margin-bottom: 50px"><h1 class="display-8 fw-normal text-center" style="margin: 30px;">${f.name}</h1><br><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px">Stars: ${f.stargazers_count}</h1><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px">Watchers: ${f.watchers_count}</h1><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px">Forks: ${f.forks_count}</h1><br><h1 class="" style="margin-top: 30px; font-size: 20px; margin: 15px; margin-bottom: 30px">Language: ${f.language || 'None'}</h1><div style="height: 1px"></div></div>` + document.getElementById("load").outerHTML;
+                                    }
+                                    catch (e) {
+                                        console.error(e);
+                                    }
+                                }
+                            }
+                        })
+                    })
+                });
+            }
+        }
+        load('Mine');
+    </script>
+
+
 
 
 
@@ -62,92 +128,44 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <main>
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-            <h1 class="display-4 fw-normal">Arthur Melton</h1>
-            <p class="lead fw-normal">A kid from 2006 that just likes coding!</p>
-            <a class="btn btn-outline-secondary" href="https://github.com/AMTitan">GitHub</a>
+    <div class="p-3 p-md-5 m-md-3 bg-light shadow-sm">
+        <div class="col-md-9 p-lg-5 mx-auto my-5 shadow-sm text-center">
+            <div class="text-center">
+                <h1 class="display-4 fw-normal">Arthur Melton</h1>
+                <p class="lead fw-normal">A kid from 2006 that just likes coding!</p>
+                <a class="btn btn-outline-secondary" href="https://github.com/AMTitan">GitHub</a>
+            </div>
+            <h1 class="display-4 fw-normal"><br>My projects</h1>
+            <a id="Mine" onclick="load('Mine')" class="btn">Mine</a>
+            <a id="Nyson" onclick="load('Nyson')" class="btn">Nyson</a>
+            <br>
+            <br>
+            <div class="form-outline mx-auto" style="max-width: 350px">
+                <input type="search" id="form1" class="form-control" placeholder="Search" aria-label="Search" oninput="onKey()" />
+            </div>
+            <br>
+            <br>
+            <div id="loadone"  class="col-md-9 p-lg-5 mx-auto my-5 shadow-sm">
+                <div id="load"></div>
+            </div>
         </div>
 
 
-    </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-
-
-    </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-
-
-    </div>
-
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5"><a href="FileExplorer++">File Explorer++</a></h2>
-                <p class="lead">Its a better file explorer!</p>
-            </div>
-            <div class="bg-white shadow-sm mx-auto" style="width: 80%;  min-height:500px; border-radius: 21px 21px 0 0;">
-                <center>
-                    <div class="col-10 col-md">
-                <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
-                <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
-                <zero-md src="https://raw.githubusercontent.com/AMTitan/File-Explorer--/master/README.md"></zero-md>
+        <footer class="container py-1 shadow-sm">
+            <div class="row">
+                <div class="col-md-9 mx-auto">
+                    <div style="text-align: center;">
+                        <small class="d-block mb-3 text-muted">©
+                            <script language="javascript" type="text/javascript">
+                                var today = new Date(); var year = today.getFullYear(); document.write(year);
+                            </script> All Rights Reserved</small>
                     </div>
-                </center>
-            </div>
-        </div>
-        <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5"><a href="ProjectDefiance">Project Defiance</a></h2>
-                <p class="lead">Its a fun game!</p>
-            </div>
-            <div class="bg-white shadow-sm mx-auto" style="width: 80%; min-height:500px; border-radius: 21px 21px 0 0;">
-                <center>
-                    <div class="col-10 col-md">
-                <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
-                <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
-                <zero-md src="https://raw.githubusercontent.com/AMTitan/Project-Defiance/master/README.md"></zero-md>
-                    </div>
-                </center>
-            </div>
-        </div>
-    </div>
-    <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-        <div class="my-3 py-3">
-            <h2 class="display-5"><a href="me">My GitHub Description</a></h2>
-            <p class="lead">Its kinda cool</p>
-        </div>
-        <div class="bg-white shadow-sm mx-auto" style="width: 80%; min-height:500px; border-radius: 21px 21px 0 0;">
-            <center>
-                <div class="col-10 col-md">
-                    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
-                    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
-                    <zero-md src="https://raw.githubusercontent.com/AMTitan/AMTitan/master/README.md"></zero-md>
                 </div>
-            </center>
-        </div>
+            </div>
+        </footer>
+
+
     </div>
-
-    <footer class="container py-1">
-        <div class="row">
-            <div class="col-3 col-md">
-
-
-            </div><div class="col-6 col-md">
-            <div style="text-align: center;">
-                <small class="d-block mb-3 text-muted">© <script language="javascript" type="text/javascript"> var today = new Date(); var year = today.getFullYear(); document.write(year); </script> All Rights Reserved</small></div>
-        </div>
-
-
-
-
-            <div class="col-3 col-md">
-
-
-            </div></div>
-    </footer>
 
 
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
